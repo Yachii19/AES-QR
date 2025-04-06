@@ -142,7 +142,7 @@ function generateEncryptedQR() {
         // Generate QR code with the raw JSON string
         const canvas = document.getElementById('qrCodeCanvas');
         QRCode.toCanvas(canvas, payloadString, {
-            width: 300,
+            width: 150,
             errorCorrectionLevel: 'H'
         }, (error) => {
             encryptBtn.disabled = false;
@@ -179,7 +179,10 @@ let scannerActive = false;
 document.getElementById('scanBtn').addEventListener('click', startScanner);
 document.getElementById('uploadBtn').addEventListener('click', showUploadOption);
 document.getElementById('stopScanBtn').addEventListener('click', stopScanner);
-document.getElementById('newScanBtn').addEventListener('click', resetDecrypt);
+document.getElementById('newScanBtn').addEventListener('click', () => {
+    resetDecrypt();
+    document.querySelector('.img-box').classList.remove('hidden');
+});
 
 // File upload handling
 document.getElementById('uploadArea').addEventListener('click', () => {
@@ -192,7 +195,7 @@ document.getElementById('fileInput').addEventListener('change', handleFileUpload
 const uploadArea = document.getElementById('uploadArea');
 uploadArea.addEventListener('dragover', (e) => {
     e.preventDefault();
-    uploadArea.style.borderColor = '#3498db';
+    uploadArea.style.borderColor = '#323741';
 });
 
 uploadArea.addEventListener('dragleave', () => {
@@ -299,8 +302,7 @@ function handleFileUpload(event) {
         const imgPreview = document.getElementById('imagePreview');
         imgPreview.src = e.target.result;
         imgPreview.classList.remove('hidden');
-        document.getElementById('processImageBtn').classList.remove('hidden');
-        
+        document.querySelector('.img-box').classList.add('hidden');
         // Store the image data for processing when button is clicked
         imgPreview.dataset.imageData = e.target.result;
     };
@@ -314,19 +316,16 @@ function handleFileUpload(event) {
 function processUploadedImage() {
     const imgPreview = document.getElementById('imagePreview');
     const statusDiv = document.getElementById('uploadStatus');
-    const processBtn = document.getElementById('processImageBtn');
     const processingDiv = document.getElementById('imageProcessing');
     
     statusDiv.innerHTML = '';
     statusDiv.className = '';
-    processBtn.classList.add('hidden');
     processingDiv.classList.remove('hidden');
     
     if (!imgPreview.dataset.imageData) {
         statusDiv.textContent = 'No image to process';
         statusDiv.className = 'error-message';
         processingDiv.classList.add('hidden');
-        processBtn.classList.remove('hidden');
         return;
     }
     
@@ -337,7 +336,6 @@ function processUploadedImage() {
             statusDiv.textContent = 'Invalid image dimensions';
             statusDiv.className = 'error-message';
             processingDiv.classList.add('hidden');
-            processBtn.classList.remove('hidden');
             return;
         }
 
@@ -388,7 +386,6 @@ function processUploadedImage() {
                 processingDiv.classList.add('hidden');
                 statusDiv.textContent = 'Error processing image: ' + e.message;
                 statusDiv.className = 'error-message';
-                processBtn.classList.remove('hidden');
                 console.error('Image processing error:', e);
             }
         }, 100);
@@ -398,7 +395,6 @@ function processUploadedImage() {
         processingDiv.classList.add('hidden');
         statusDiv.textContent = 'Error loading image';
         statusDiv.className = 'error-message';
-        processBtn.classList.remove('hidden');
     };
     
     img.src = imgPreview.dataset.imageData;
@@ -413,11 +409,14 @@ function processQRCodeData(qrData) {
         if (payload && payload.e && payload.k && payload.i && payload.t && payload.v === 1) {
             stopScanner();
             document.getElementById('fileUploadContainer').classList.add('hidden');
+            document.querySelector('.img-box').classList.add('hidden');
             
             // Get the decryption key from input
             const decryptionKey = document.getElementById('decryptionKey').value.trim();
             if (!decryptionKey) {
                 alertPopup('Please enter the decryption key');
+                document.querySelector('.img-box').classList.remove('hidden');
+                resetDecrypt();
                 return;
             }
             
@@ -428,6 +427,8 @@ function processQRCodeData(qrData) {
             // Verify the keys match
             if (storedKeyHex !== inputKeyHex) {
                 alertPopup('Decryption key does not match the key used for encryption');
+                document.querySelector('.img-box').classList.remove('hidden');
+                resetDecrypt();
                 return;
             }
             
@@ -449,13 +450,16 @@ function processQRCodeData(qrData) {
                 document.getElementById('decryptedResult').classList.remove('hidden');
             } else {
                 throw new Error('Decryption failed - invalid key or corrupted data');
+                
             }
         } else {
             throw new Error('Invalid QR code format - not generated by this app');
+            
         }
     } catch (e) {
         console.error('Error processing QR code:', e);
         alertPopup('Error: ' + e.message);
+        document.querySelector('.img-box').classList.remove('hidden');
         resetDecrypt();
     }
 }
@@ -480,7 +484,6 @@ function resetDecrypt() {
     document.getElementById('fileInput').value = '';
     document.getElementById('imagePreview').src = '';
     document.getElementById('imagePreview').classList.add('hidden');
-    document.getElementById('processImageBtn').classList.add('hidden');
     document.getElementById('uploadStatus').textContent = '';
     document.getElementById('uploadStatus').className = '';
     document.getElementById('imageProcessing').classList.add('hidden');

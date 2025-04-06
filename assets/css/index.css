@@ -12,8 +12,8 @@
 }
 
 h2 {
-    font-weight: 400;
-    font-size: 24px;
+    font-weight: 500;
+    font-size: 20px;
     margin-bottom: 1.5rem;
 }
 
@@ -87,32 +87,32 @@ h1 {
 /* Media Query for Tablets */
 @media (min-width: 768px) and (max-width: 1023px) {
     .landing-page {
-        gap: 50px; /* Adjust gap for tablet view */
+        gap: 50px; 
     }
 
     .welcome-section {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center; /* Center content vertically */
-        height: auto; /* Allow height to adjust based on content */
+        justify-content: center; 
+        height: auto; 
         margin-bottom: 20px;
     }
 
     h2 {
-        font-size: 20px; /* Adjust font size for tablet */
+        font-size: 20px; 
     }
 
     h1 {
-        font-size: 2.5rem; /* Adjust font size for tablet */
+        font-size: 2.5rem; 
     }
 
     .subtitle {
-        font-size: 0.9rem; /* Adjust font size for tablet */
+        font-size: 0.9rem; 
     }
 
     .enter-main-page-container {
-        margin-bottom: 30px; /* Adjust margin for tablet */
+        margin-bottom: 30px; 
     }
 
     .learn-encryption-container {
@@ -122,19 +122,19 @@ h1 {
     }
 
     .learn-encryption-container > p {
-        font-size: 0.9rem; /* Adjust font size for tablet */
+        font-size: 0.9rem;
         font-weight: 500;
     }
 
     .grid-container {
-        grid-template-columns: repeat(2, 1fr); /* Two columns for tablet */
-        gap: 10px; /* Adjust gap for tablet */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
     }
 
     .grid-content {
-        font-size: 0.9rem; /* Adjust font size for tablet */
-        height: 150px; /* Adjust height for tablet */
-        width: 130px; /* Adjust width for tablet */
+        font-size: 0.9rem; 
+        height: 150px; 
+        width: 130px; 
     }
 }
 
