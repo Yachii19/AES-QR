@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES Encryption/Decryption with QR Codes</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/encryption.css">
+</head>
+<body>
+    <h1>AES Encryption/Decryption with QR Codes</h1>
+    
+    <div class="tabs">
+        <div class="tab active" data-tab="encrypt">Encrypt</div>
+        <div class="tab" data-tab="decrypt">Decrypt</div>
+    </div>
+    
+    <div id="encrypt" class="tab-content active">
+        <div class="form-group">
+            <label for="plainText">Text to Encrypt:</label>
+            <textarea id="plainText" placeholder="Enter your secret message here"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="encryptionType">Encryption Type:</label>
+            <select id="encryptionType">
+                <option value="AES-128">AES-128</option>
+                <option value="AES-192">AES-192</option>
+                <option value="AES-256">AES-256</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Encryption Key:</label>
+            <div class="key-options">
+                <input type="text" id="encryptionKey" placeholder="Enter your encryption key">
+                <button id="generateKeyBtn">Generate Key</button>
+            </div>
+            <div id="keyValidationMessage" class="error-message hidden"></div>
+        </div>
+        
+        <button id="encryptBtn">Generate Encrypted QR Code</button>
+        
+        <div id="qrCodeContainer" class="hidden">
+            <h3>Encrypted QR Code:</h3>
+            <canvas id="qrCodeCanvas"></canvas>
+            <div class="qr-actions">
+                <button id="downloadBtn">Download QR Code</button>
+                <button id="copyKeyBtn">Copy Key to Clipboard</button>
+            </div>
+            <p>Save this QR code and scan it with the decrypt page. You'll need the encryption key to decrypt it.</p>
+        </div>
+    </div>
+    
+    <div id="decrypt" class="tab-content">
+        <div class="decrypt-options">
+            <button id="scanBtn">Scan with Camera</button>
+            <button id="uploadBtn">Upload QR Code Image</button>
+            <button id="stopScanBtn" class="hidden">Stop Scanner</button>
+        </div>
+        
+        <div class="decryption-key-container">
+            <div class="form-group">
+                <label for="decryptionKey">Decryption Key:</label>
+                <input type="text" id="decryptionKey" placeholder="Enter the encryption key used to create this QR code">
+                <div id="decryptionKeyValidation" class="error-message hidden"></div>
+            </div>
+        </div>
+        
+        <div id="fileUploadContainer" class="hidden">
+            <div class="upload-area" id="uploadArea">
+                <p>Drag & drop a QR code image here or click to select</p>
+                <input type="file" id="fileInput" accept="image/*">
+                <img id="imagePreview" class="hidden">
+                <div id="uploadStatus"></div>
+            </div>
+            <button id="processImageBtn" class="hidden">Process Image</button>
+            <div id="imageProcessing" class="hidden">
+                <div class="loading"></div>
+                <p>Processing image...</p>
+            </div>
+        </div>
+        
+        <div id="scannerContainer" class="hidden">
+            <video id="scanner" width="300" playsinline></video>
+            <div id="cameraStatus"></div>
+        </div>
+        
+        <div id="decryptedResult" class="hidden">
+            <h3>Decrypted Message:</h3>
+            <div id="decryptedMessage"></div>
+            <button id="newScanBtn">Decrypt Another QR Code</button>
+        </div>
+    </div>
+
+    <!-- Custom Alert Start -->
+    <div id="customAlert" class="custom-alert">
+        <div class="alert-content">
+            <span id="alertMessage"></span>
+            <button id="alertCloseButton">OK</button>
+        </div>
+    </div>
+    <!-- Custom Alert End -->
+
+    <script src="./assets/scripts/encryption.js"></script>
+</body>
+</html>

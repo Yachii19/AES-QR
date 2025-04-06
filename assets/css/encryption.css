@@ -1,0 +1,218 @@
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    margin-right: 5px;
+    border-radius: 5px 5px 0 0;
+}
+.tab.active {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+.tab-content {
+    display: none;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 0 0 5px 5px;
+}
+.tab-content.active {
+    display: block;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+textarea, input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+select, button {
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+button:hover {
+    background-color: #2980b9;
+}
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+#qrCodeContainer {
+    margin-top: 20px;
+    text-align: center;
+}
+#qrCodeCanvas {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+}
+#scannerContainer {
+    margin-top: 20px;
+    text-align: center;
+}
+#scanner {
+    max-width: 300px;
+    background-color: white;
+    border: 1px solid #ddd;
+}
+#decryptedMessage {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}
+.hidden {
+    display: none;
+}
+.upload-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+    cursor: pointer;
+}
+.upload-area:hover {
+    border-color: #3498db;
+}
+#fileInput {
+    display: none;
+}
+.decrypt-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.error-message {
+    color: #d9534f;
+    margin-top: 10px;
+}
+.success-message {
+    color: #5cb85c;
+    margin-top: 10px;
+}
+#imagePreview {
+    max-width: 300px;
+    max-height: 300px;
+    margin: 10px auto;
+    display: block;
+}
+.loading {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 10px auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.qr-actions {
+    margin-top: 15px;
+}
+.key-options {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.key-options input {
+    flex: 1;
+}
+.decryption-key-container {
+    margin-top: 20px;
+}
+
+/* Custom Made Popup Styling Starts */
+.custom-alert {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.50);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    z-index: 1000;
+}
+
+.custom-alert .alert-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px 40px;
+    border-radius: 10px;
+    width: 600px;
+    animation: popup-animation 0.5s ease-out;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); 
+}
+
+.custom-alert .alert-content > span {
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+
+.custom-alert #alertCloseButton {
+    margin-top: 20px;
+    width: 40%;
+    padding: 10px 0;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(to right, #d1d1d1, #f0f0f0);
+    color: rgb(93, 93, 93);
+    font-weight: 700;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.custom-alert #alertCloseButton:hover {
+    background: linear-gradient(to right, #f0f0f0, #d1d1d1); 
+    opacity: 0.8;
+}
+
+/* Style so that when the popup appear the body won't be scrollable and be locked with a 100 viewer port view */
+body.modal-open {
+    overflow: hidden;
+}
