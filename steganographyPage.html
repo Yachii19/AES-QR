@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES Encryption/Decryption with Steganography</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/global.css">
+    <link rel="stylesheet" href="./assets/css/steganography.css">
+
+</head>
+<body>
+    <h1 class="title">AES with Steganography</h1>
+    
+    <div class="tabs">
+        <div class="tab active" data-tab="encrypt">Encrypt</div>
+        <div class="tab" data-tab="decrypt">Decrypt</div>
+    </div>
+    
+    <div id="encrypt" class="tab-content active">
+        <div class="form-group">
+            <label for="plainText">Text to encrypt</label>
+            <textarea id="plainText" placeholder="Enter a message..."></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="encryptionType">Encryption Type</label>
+            <select id="encryptionType">
+                <option value="AES-128">AES-128</option>
+                <option value="AES-192">AES-192</option>
+                <option value="AES-256">AES-256</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Encryption Key:</label>
+            <div class="key-options">
+                <input type="text" id="encryptionKey" placeholder="Enter your encryption key">
+                <button id="generateKeyBtn" class="generate-key-btn">Generate Key</button>
+            </div>
+            <div id="keyValidationMessage" class="error-message hidden"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Select Cover Image:</label>
+            <div class="upload-area" id="imageUploadArea">
+                <p>Drag & drop an image here or click to select</p>
+                <input type="file" id="imageInput" accept="image/*">
+                <div class="img-box"></div>
+            </div>
+        </div>
+        
+        <button id="encryptBtn" class="encrypt-btn">Hide Message in Image</button>
+
+        <hr>
+        
+        <div id="resultContainer" class="hidden">
+            <div class="result-border">
+                <h3>Image with Hidden Message</h3>
+                <canvas id="outputCanvas"></canvas>
+                <div class="qr-actions">
+                    <button id="downloadBtn" class="download-btn">Download Image</button>
+                    <button id="copyKeyBtn" class="copy-key-btn">Copy Key to Clipboard</button>
+                </div>
+            </div>
+            <p>Save this image and use the decrypt page to extract the hidden message</p>
+        </div> 
+    </div>
+    
+    <div id="decrypt" class="tab-content">
+        <div class="form-group">
+            <label>Upload Image with Hidden Message:</label>
+            <div class="upload-area" id="hiddenImageUploadArea">
+                <p>Drag & drop an image here or click to select</p>
+                <input type="file" id="hiddenImageInput" accept="image/*">
+                <img id="hiddenImagePreview" class="image-preview hidden">
+
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="decryptionKey">Decryption Key</label>
+            <input type="text" id="decryptionKey" placeholder="Enter the decryption key">
+            <div id="decryptionKeyValidation" class="error-message hidden"></div>
+        </div>
+        
+        <button id="decryptBtn" class="encrypt-btn">Extract Hidden Message</button>
+        
+        <div id="decryptedResult" class="hidden">
+            <label for="decryptedMessage">Decrypted Message</label>
+            <div id="decryptedMessage" class="result-border"></div>
+            <button id="newDecryptBtn">Decrypt Another Image</button>
+        </div>
+    </div>
+
+    <!-- Custom Alert -->
+    <div id="customAlert" class="custom-alert">
+        <div class="alert-content">
+            <span id="alertMessage"></span>
+            <button id="alertCloseButton">OK</button>
+        </div>
+    </div>
+
+    <script src="./assets/scripts/steganography.js"> </script>
+</body>
+</html>

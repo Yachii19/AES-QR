@@ -15,7 +15,13 @@
     margin-bottom: 1rem;
 }
 
-.enter-main-page-container > a {
+.enter-main-page-container > div {
+    display: flex;
+    flex-direction: column;
+    column-gap: 20px;
+}
+
+.enter-main-page-container > div > a {
     width: 100%;
 }
 
@@ -162,6 +168,10 @@ h1 {
         font-size: 16px;
     }
     
+    .enter-main-page-container > div {
+        display: flex;
+        flex-direction: row;
+    }
     
     .get-started-container > .col-1 {
         row-gap: 8px;
@@ -254,6 +264,10 @@ h1 {
         font-size: 16px;
     }
     
+    .enter-main-page-container > div {
+        display: flex;
+        flex-direction: row;
+    }
     
     .get-started-container > .col-1 {
         row-gap: 8px;

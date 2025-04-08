@@ -1,0 +1,392 @@
+.title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    gap: 10px;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    cursor: pointer;
+    width: 70px;
+    height: 26px;
+    background-color: #191C24;
+    border: none;
+    border-radius: 20px;
+}
+
+.tab.active {
+    background-color: #323741;
+    color: white;
+    border: none;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 400;
+    font-size: 10px;
+    color: #FFFFFF;
+}
+
+input[type="text"], 
+textarea,
+select {
+    color: #FFFFFF;
+    width: 100%;
+    font-size: 10px;
+    padding: 10px 15px;
+    border: 1px solid #323741;
+    background-color: #23242A;
+    border-radius: 5px;
+    transition: border 0.3s ease, color 0.3s ease;
+}
+
+select {
+    cursor: pointer;
+}
+
+input[type="text"]:hover,
+textarea:hover,
+select:hover {
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF
+}
+
+.generate-key-btn {
+    background-color: #26489A;
+    font-size: 10px;
+    color: #FFFFFF;
+    padding: 10px 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.generate-key-btn:hover {
+    background-color: #2980b9;
+}
+
+.encrypt-btn,
+.download-btn,
+.copy-key-btn,
+#newScanBtn,
+#newDecryptBtn {
+    color: #212121;
+    background-color: #FFFFFF;
+    font-size: 10px;
+    width: 100%;
+    padding: 10px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    transition: opacity 0.3s ease;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.encrypt-btn:hover,
+.download-btn:hover,
+.copy-key-btn:hover,
+#newScanBtn:hover,
+#newDecryptBtn:hover {
+    opacity: 0.7;
+}
+
+hr {
+    height: 1px; 
+    background-color: #323741;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+#resultContainer > p{
+    font-size: 10px;
+    text-align: center;
+}
+
+.result-border {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #323741;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.result-border > h3{
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+canvas {
+    height: 150px;
+    width: 150px;
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+.download-btn,
+.copy-key-btn {
+    width: 150px;
+}
+
+.hidden {
+    display: none;
+}
+
+.error-message {
+    color: #d9534f;
+    margin-top: 10px;
+}
+
+.success-message {
+    color: #5cb85c;
+    margin-top: 10px;
+}
+
+.image-preview {
+    max-width: 300px;
+    max-height: 300px;
+    margin: 10px auto;
+    display: block;
+}
+
+#hiddenImageInput {
+    display: none;
+}
+
+.upload-area, .img-box, .image-preview {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.img-box img {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #323741;
+    padding: 20px;
+    margin: 20px 0;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.upload-area > p {
+    margin-bottom: 15px;
+}
+
+.upload-area > .img-box,
+.upload-area > #hiddenImagePreview {
+    width: 150px;
+    height: 150px;
+    background-color: white;
+}
+
+
+.upload-area:hover {
+    border-color: #FFFFFF;
+}
+#imageInput {
+    display: none;
+}
+
+.key-options {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.key-options input {
+    flex: 1;
+}
+
+/* Custom Made Popup Styling */
+.custom-alert {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    z-index: 1000;
+}
+
+.custom-alert .alert-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: #191C24;
+    padding: 30px 40px;
+    border-radius: 10px;
+    width: 300px;
+    animation: popup-animation 0.5s ease-out;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+}
+
+.custom-alert .alert-content > span {
+    text-align: center;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.custom-alert #alertCloseButton {
+    margin-top: 20px;
+    width: 40%;
+    padding: 10px 0;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(to right, #26489A, #2980b9);
+    color: #FFFFFF; 
+    font-weight: 700;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.custom-alert #alertCloseButton:hover {
+    background: linear-gradient(to right, #2980b9, #26489A); 
+    opacity: 0.8;
+}
+
+@media (min-width: 1024px) {
+    body {
+        max-width: 800px;
+        margin: 0 auto;
+        color: #FFFFFF;
+    }
+    .tabs {
+        display: flex;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #323741;
+    }
+    .tab {
+        cursor: pointer;
+        border: none;
+        font-size: 1rem;
+        width: 120px;
+        height: 40px;
+        margin-right: 5px;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .tab-content {
+        display: none;
+        padding: 30px;
+        border: 1px dashed #323741;
+        border-radius: 0 0 5px 5px;
+        margin-bottom: 40px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    input[type="text"], 
+    textarea,
+    select {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+
+    .generate-key-btn {
+        font-size: 16px;
+        padding: 15px 50px;
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .encrypt-btn,
+    .download-btn,
+    .copy-key-btn,
+    #newScanBtn,
+    #newDecryptBtn {
+        font-size: 16px;
+        padding: 15px;
+        font-weight: 700 !important;
+        border: none;
+        transition: opacity 0.3s ease;
+        margin-bottom: 25px;
+    }
+
+    .result-container {
+        margin-top: 25px;
+    }
+    
+    .result-container > p {
+        font-size: 1rem;
+    }
+
+    .result-border {
+        min-width: 500px;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 15px;
+    }
+
+    .result-border > h3{
+        font-size: 12px;
+        margin-bottom: 15px;
+        font-weight: 400;
+    }  
+
+    canvas {
+        margin-bottom: 20px;
+    }
+
+    .download-btn,
+    .copy-key-btn {
+        width: 100%;
+    }
+
+    /* Custom Made Popup Styling */
+    .custom-alert .alert-content {
+        width: 600px;
+    }
+}
